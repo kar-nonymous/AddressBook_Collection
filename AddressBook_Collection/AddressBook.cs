@@ -166,18 +166,5 @@ namespace AddressBook_Collection
                 Console.WriteLine("\nFirst name: " + contacts.firstName + "\nLast name: " + contacts.lastName + "\nAddress: " + contacts.address + "\nCity: " + contacts.city + "\nState: " + contacts.state + "\nEmail: " + contacts.email + "\nZip: " + contacts.zip + "\nPhone number" + contacts.phnNo);
             }
         }
-        public void GetPersonFromCityOrState()
-        {
-            Console.WriteLine("\nEnter the city or state name to find the person");
-            string city = Console.ReadLine();
-            string state = city;
-            if(addressDictionary.ContainsKey(city) || addressDictionary.ContainsKey(state))
-            {
-                foreach(Contacts contacts in contactList)
-                {
-                    Console.WriteLine("\nFirst name: " + contacts.firstName + "\nLast name: " + contacts.lastName);
-                }
-            }
-        }
     }
 }
