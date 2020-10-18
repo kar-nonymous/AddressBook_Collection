@@ -21,6 +21,14 @@ namespace AddressBook_Collection
         /// </summary>
         private Dictionary<string, Contacts> addressDictionary = new Dictionary<string, Contacts>();
         /// <summary>
+        /// The city dictionary is created
+        /// </summary>
+        private Dictionary<string, Contacts> cityDictionary = new Dictionary<string, Contacts>();
+        /// <summary>
+        /// The state dictionary is created
+        /// </summary>
+        private Dictionary<string, Contacts> stateDictionary = new Dictionary<string, Contacts>();
+        /// <summary>
         /// Method to add the personal details
         /// </summary>
         public void AddContact()
@@ -80,6 +88,7 @@ namespace AddressBook_Collection
                 {
                     flag = false;
                 }
+                DictionaryOfCityAndState(contacts);
             }
         }
         /// <summary>
@@ -164,6 +173,56 @@ namespace AddressBook_Collection
             foreach (Contacts contacts in contactList)
             {
                 Console.WriteLine("\nFirst name: " + contacts.firstName + "\nLast name: " + contacts.lastName + "\nAddress: " + contacts.address + "\nCity: " + contacts.city + "\nState: " + contacts.state + "\nEmail: " + contacts.email + "\nZip: " + contacts.zip + "\nPhone number" + contacts.phnNo);
+            }
+        }
+        /// <summary>
+        /// UC8:    Gets the person name from the corresponding city or state
+        /// </summary>
+        public void GetPersonFromCityOrState()
+        {
+            Console.WriteLine("\nEnter the city or state name to find the person");
+            string city = Console.ReadLine();
+            string state = city;
+            foreach(KeyValuePair<string,Contacts> keyValuePair in addressDictionary)
+            {
+                if (keyValuePair.Value.city == city || keyValuePair.Value.state == state)
+                    Console.WriteLine("First Name: " + keyValuePair.Value.firstName + "Last Name: " + keyValuePair.Value.lastName);
+            }
+        }
+        /// <summary>
+        /// UC9:     Maintaining two different dictionaries of city and state
+        /// </summary>
+        public void DictionaryOfCityAndState(Contacts contacts)
+        {
+            foreach(KeyValuePair<string,Contacts> keyValuePair in addressDictionary)
+            {
+                cityDictionary.Add(keyValuePair.Value.city, contacts);
+                stateDictionary.Add(keyValuePair.Value.state, contacts);
+            }
+        }
+        /// <summary>
+        /// Displays the whole personal details of the person using city and state dictionary
+        /// </summary>
+        public void DisplayCityAndStateDictionary()
+        {
+            if (addressDictionary.Count == 0)
+                Console.WriteLine("There is no contact present");
+            else
+            {
+                foreach (KeyValuePair<string, Contacts> keyValuePair in cityDictionary)
+                {
+                    Console.WriteLine("The contacts with " + keyValuePair.Key + " city are :");
+                    Console.WriteLine("First Name: " + keyValuePair.Value.firstName + " Last Name: " + keyValuePair.Value.lastName +
+                            " Address: " + keyValuePair.Value.address + " city: " + keyValuePair.Value.city + " state: " + keyValuePair.Value.state
+                             + " Email:" + keyValuePair.Value.email + "Zip: " + keyValuePair.Value.zip + "Phone Nmuber: " + keyValuePair.Value.phnNo);
+                }
+                foreach (KeyValuePair<string, Contacts> keyValuePair in stateDictionary)
+                {
+                    Console.WriteLine("The contacts with " + keyValuePair.Key + " state are :");
+                    Console.WriteLine("First Name: " + keyValuePair.Value.firstName + " Last Name: " + keyValuePair.Value.lastName +
+                            " Address: " + keyValuePair.Value.address + " city: " + keyValuePair.Value.city + " state: " + keyValuePair.Value.state
+                             + " Email:" + keyValuePair.Value.email + "Zip: " + keyValuePair.Value.zip + "Phone Nmuber: " + keyValuePair.Value.phnNo);
+                }
             }
         }
     }

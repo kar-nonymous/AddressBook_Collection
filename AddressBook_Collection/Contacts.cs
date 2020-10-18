@@ -13,7 +13,7 @@ namespace AddressBook_Collection
     /// <summary>
     /// Contacts class to enter different personal information of the user
     /// </summary>
-    class Contacts
+    public class Contacts
     {
         public string firstName;
         public string lastName;

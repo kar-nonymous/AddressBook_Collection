@@ -20,7 +20,7 @@ namespace AddressBook_Collection
             while (flag)
             {
                 
-                Console.WriteLine("1: Add New Address Book \n2: Add Contacts \n3: Edit Contacts \n4: Delete Contacts \n5: Display Contacts ");
+                Console.WriteLine("1: Add New Address Book \n2: Add Contacts \n3: Edit Contacts \n4: Delete Contacts \n5: Display Contacts \n6: Search contact using city or state name \n7: Displaycity and state list");
                 string options = Console.ReadLine();
                 /// <summary>
                 /// To select from different options available
@@ -41,6 +41,12 @@ namespace AddressBook_Collection
                         break;
                     case "5":
                         DisplayContactsFromAddressBook();
+                        break;
+                    case "6":
+                        GetDetailsUsingCityOrState();
+                        break;
+                    case "7":
+                        DisplayContactsFromCityAndStateList();
                         break;
                     default:
                         flag = false;
@@ -123,7 +129,7 @@ namespace AddressBook_Collection
         {
             Console.WriteLine("\nEnter address book name");
             string name = Console.ReadLine();
-            if(!addressBookDictionary.ContainsKey(name))
+            if (!addressBookDictionary.ContainsKey(name))
             {
                 Console.WriteLine("Address book name not found");
             }
@@ -133,9 +139,21 @@ namespace AddressBook_Collection
                 addressBook.DisplayContact();
             }
         }
-        static void DisplayNameFromCityOrState()
+        /// <summary>
+        /// Displays person's name from city or state
+        /// </summary>
+        static void GetDetailsUsingCityOrState()
         {
-
+            AddressBook addressBook = new AddressBook();
+            addressBook.GetPersonFromCityOrState();
+        }
+        /// <summary>
+        /// Displays the contacts from city and state list.
+        /// </summary>
+        static void DisplayContactsFromCityAndStateList()
+        {
+            AddressBook addressBook = new AddressBook();
+            addressBook.DisplayCityAndStateDictionary();
         }
     }
 }
