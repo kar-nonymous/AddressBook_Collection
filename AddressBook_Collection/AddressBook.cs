@@ -15,19 +15,19 @@ namespace AddressBook_Collection
         /// <summary>
         /// The contact list is created
         /// </summary>
-        private List<Contacts> contactList = new List<Contacts>();
+        public List<Contacts> contactList = new List<Contacts>();
         /// <summary>
         /// The address dictionary is created
         /// </summary>
-        private Dictionary<string, Contacts> addressDictionary = new Dictionary<string, Contacts>();
+        public Dictionary<string, Contacts> addressDictionary = new Dictionary<string, Contacts>();
         /// <summary>
         /// The city dictionary is created
         /// </summary>
-        private Dictionary<string, Contacts> cityDictionary = new Dictionary<string, Contacts>();
+        public Dictionary<string, Contacts> cityDictionary = new Dictionary<string, Contacts>();
         /// <summary>
         /// The state dictionary is created
         /// </summary>
-        private Dictionary<string, Contacts> stateDictionary = new Dictionary<string, Contacts>();
+        public Dictionary<string, Contacts> stateDictionary = new Dictionary<string, Contacts>();
         /// <summary>
         /// Method to add the personal details
         /// </summary>
@@ -48,6 +48,9 @@ namespace AddressBook_Collection
                 {
                     contactList.Add(contacts);
                     addressDictionary.Add(contacts.firstName, contacts);
+                    ///Adding contacts to city and state dictionary
+                    cityDictionary.Add(contacts.city, contacts);
+                    stateDictionary.Add(contacts.state, contacts);
                 }
                 else
                 {
@@ -60,6 +63,9 @@ namespace AddressBook_Collection
                             {
                                 contactList.Add(contacts);
                                 addressDictionary.Add(contacts.firstName, contacts);
+                                ///Adding contacts to city and state dictionary
+                                cityDictionary.Add(contacts.city, contacts);
+                                stateDictionary.Add(contacts.state, contacts);
                                 break;
                             }
                             else
@@ -69,16 +75,12 @@ namespace AddressBook_Collection
                         }
                         else
                         {
-                            try
-                            {
-                                contactList.Add(contacts);
-                                addressDictionary.Add(contacts.firstName, contacts);
-                                break;
-                            }
-                            catch(ArgumentException)
-                            {
-                                Console.WriteLine("Contact already present");
-                            }
+                            contactList.Add(contacts);
+                            addressDictionary.Add(contacts.firstName, contacts);
+                            //Adding contacts to city and state dictionary
+                            cityDictionary.Add(contacts.city, contacts);
+                            stateDictionary.Add(contacts.state, contacts);
+                            break;
                         }
                     }
                 }
@@ -88,7 +90,6 @@ namespace AddressBook_Collection
                 {
                     flag = false;
                 }
-                DictionaryOfCityAndState(contacts);
             }
         }
         /// <summary>
@@ -190,18 +191,7 @@ namespace AddressBook_Collection
             }
         }
         /// <summary>
-        /// UC9:     Maintaining two different dictionaries of city and state
-        /// </summary>
-        public void DictionaryOfCityAndState(Contacts contacts)
-        {
-            foreach(KeyValuePair<string,Contacts> keyValuePair in addressDictionary)
-            {
-                cityDictionary.Add(keyValuePair.Value.city, contacts);
-                stateDictionary.Add(keyValuePair.Value.state, contacts);
-            }
-        }
-        /// <summary>
-        /// Displays the whole personal details of the person using city and state dictionary
+        /// UC 9: Displays the whole personal details of the person using city and state dictionary
         /// </summary>
         public void DisplayCityAndStateDictionary()
         {
@@ -243,7 +233,6 @@ namespace AddressBook_Collection
                 if (keyValuePair.Key == cityState)
                     count++;
             }
-
             foreach (KeyValuePair<string, Contacts> keyValuePair in stateDictionary)
             {
                 ///Checks for entered state name
@@ -251,7 +240,6 @@ namespace AddressBook_Collection
                     count++;
             }
             Console.WriteLine("Count for city or state (" + cityState + ") is: " + count);
-
         }
     }
 }
