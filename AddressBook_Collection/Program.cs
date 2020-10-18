@@ -20,9 +20,8 @@ namespace AddressBook_Collection
             while (flag)
             {
                 
-                Console.WriteLine("1: Add New Address Book \n2: Add Contacts \n3: Edit Contacts \n4: Delete Contacts \n5: Display Contacts \n6: Search contact using city or state name");
+                Console.WriteLine("1: Add New Address Book \n2: Add Contacts \n3: Edit Contacts \n4: Delete Contacts \n5: Display Contacts \n6: Search contact using city or state name \n7: Displaycity and state list");
                 string options = Console.ReadLine();
-                AddressBook addressBook = new AddressBook();
                 /// <summary>
                 /// To select from different options available
                 /// </summary>
@@ -44,7 +43,10 @@ namespace AddressBook_Collection
                         DisplayContactsFromAddressBook();
                         break;
                     case "6":
-                        addressBook.GetPersonFromCityOrState();
+                        GetDetailsUsingCityOrState();
+                        break;
+                    case "7":
+                        DisplayContactsFromCityAndStateList();
                         break;
                     default:
                         flag = false;
@@ -136,6 +138,22 @@ namespace AddressBook_Collection
                 AddressBook addressBook = addressBookDictionary[name];
                 addressBook.DisplayContact();
             }
+        }
+        /// <summary>
+        /// Displays person's name from city or state
+        /// </summary>
+        static void GetDetailsUsingCityOrState()
+        {
+            AddressBook addressBook = new AddressBook();
+            addressBook.GetPersonFromCityOrState();
+        }
+        /// <summary>
+        /// Displays the contacts from city and state list.
+        /// </summary>
+        static void DisplayContactsFromCityAndStateList()
+        {
+            AddressBook addressBook = new AddressBook();
+            addressBook.DisplayCityAndStateDictionary();
         }
     }
 }
