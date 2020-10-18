@@ -20,7 +20,7 @@ namespace AddressBook_Collection
             while (flag)
             {
                 
-                Console.WriteLine("1: Add New Address Book \n2: Add Contacts \n3: Edit Contacts \n4: Delete Contacts \n5: Display Contacts \n6: Search contact using city or state name \n7: Display city and state list \n8: Get count from city or state");
+                Console.WriteLine("1: Add New Address Book \n2: Add Contacts \n3: Edit Contacts \n4: Delete Contacts \n5: Display Contacts \n6: Search contact using city or state name \n7: Display city and state list ");
                 string options = Console.ReadLine();
                 /// <summary>
                 /// To select from different options available
@@ -47,9 +47,6 @@ namespace AddressBook_Collection
                         break;
                     case "7":
                         DisplayContactsFromCityAndStateList();
-                        break;
-                    case "8":
-                        CountForPersonFromCityOrState();
                         break;
                     default:
                         flag = false;
@@ -147,6 +144,7 @@ namespace AddressBook_Collection
         /// </summary>
         static void GetDetailsUsingCityOrState()
         {
+
             AddressBook addressBook = new AddressBook();
             addressBook.GetPersonFromCityOrState();
         }
@@ -157,11 +155,6 @@ namespace AddressBook_Collection
         {
             AddressBook addressBook = new AddressBook();
             addressBook.DisplayCityAndStateDictionary();
-        }
-        static void CountForPersonFromCityOrState()
-        {
-            AddressBook addressBook = new AddressBook();
-            addressBook.GetCount();
         }
     }
 }
