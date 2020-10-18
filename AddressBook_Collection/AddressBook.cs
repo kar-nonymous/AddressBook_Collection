@@ -216,5 +216,30 @@ namespace AddressBook_Collection
                 }
             }
         }
+        /// <summary>
+        /// UC10:    Returning the count corresponding to city or state
+        /// </summary>
+        public void GetCount()
+        {
+            ///Checks for empty list
+            if (addressDictionary.Count == 0)
+                Console.WriteLine("There is no contact present");
+            Console.WriteLine("Enter city or state name for count");
+            string cityState = Console.ReadLine();
+            int count = 0;
+            foreach (KeyValuePair<string, Contacts> keyValuePair in cityDictionary)
+            {
+                ///Checks for entered city name
+                if (keyValuePair.Key == cityState)
+                    count++;
+            }
+            foreach (KeyValuePair<string, Contacts> keyValuePair in stateDictionary)
+            {
+                ///Checks for entered state name
+                if (keyValuePair.Key == cityState)
+                    count++;
+            }
+            Console.WriteLine("Count for city or state (" + cityState + ") is: " + count);
+        }
     }
 }
