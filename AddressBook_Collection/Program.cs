@@ -133,5 +133,9 @@ namespace AddressBook_Collection
                 addressBook.DisplayContact();
             }
         }
+        static void DisplayNameFromCityOrState()
+        {
+
+        }
     }
 }

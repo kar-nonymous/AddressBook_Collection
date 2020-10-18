@@ -29,8 +29,51 @@ namespace AddressBook_Collection
             while (flag)
             {
                 Contacts contacts = new Contacts();
-                contactList.Add(contacts);
-                addressDictionary.Add(contacts.firstName, contacts);
+                /// <summary>
+                /// UC 7: To check for the name if it is already present in the list
+                /// </summary>summary>
+                string fullName = contacts.firstName + " " + contacts.lastName;
+                /// <summary>
+                /// It will check for every name previously present in the list
+                /// </summary>
+                if(contactList.Count==0)
+                {
+                    contactList.Add(contacts);
+                    addressDictionary.Add(contacts.firstName, contacts);
+                }
+                else
+                {
+                    foreach (KeyValuePair<string,Contacts> keyValuePair in addressDictionary)
+                    {
+                        string fullNameInList = keyValuePair.Value.firstName + " " + keyValuePair.Value.lastName;
+                        if(keyValuePair.Key==contacts.firstName)
+                        {
+                            if(fullNameInList != fullName)
+                            {
+                                contactList.Add(contacts);
+                                addressDictionary.Add(contacts.firstName, contacts);
+                                break;
+                            }
+                            else
+                            {
+                                Console.WriteLine("Contact already present");
+                            }
+                        }
+                        else
+                        {
+                            try
+                            {
+                                contactList.Add(contacts);
+                                addressDictionary.Add(contacts.firstName, contacts);
+                                break;
+                            }
+                            catch(ArgumentException)
+                            {
+                                Console.WriteLine("Contact already present");
+                            }
+                        }
+                    }
+                }
                 Console.WriteLine("\nType 'yes' to enter new user");
                 string option = Console.ReadLine();
                 if (option != "yes")
@@ -121,6 +164,19 @@ namespace AddressBook_Collection
             foreach (Contacts contacts in contactList)
             {
                 Console.WriteLine("\nFirst name: " + contacts.firstName + "\nLast name: " + contacts.lastName + "\nAddress: " + contacts.address + "\nCity: " + contacts.city + "\nState: " + contacts.state + "\nEmail: " + contacts.email + "\nZip: " + contacts.zip + "\nPhone number" + contacts.phnNo);
+            }
+        }
+        public void GetPersonFromCityOrState()
+        {
+            Console.WriteLine("\nEnter the city or state name to find the person");
+            string city = Console.ReadLine();
+            string state = city;
+            if(addressDictionary.ContainsKey(city) || addressDictionary.ContainsKey(state))
+            {
+                foreach(Contacts contacts in contactList)
+                {
+                    Console.WriteLine("\nFirst name: " + contacts.firstName + "\nLast name: " + contacts.lastName);
+                }
             }
         }
     }
