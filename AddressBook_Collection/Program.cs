@@ -20,8 +20,9 @@ namespace AddressBook_Collection
             while (flag)
             {
                 
-                Console.WriteLine("1: Add New Address Book \n2: Add Contacts \n3: Edit Contacts \n4: Delete Contacts \n5: Display Contacts ");
+                Console.WriteLine("1: Add New Address Book \n2: Add Contacts \n3: Edit Contacts \n4: Delete Contacts \n5: Display Contacts \n6: Search contact using city or state name");
                 string options = Console.ReadLine();
+                AddressBook addressBook = new AddressBook();
                 /// <summary>
                 /// To select from different options available
                 /// </summary>
@@ -41,6 +42,9 @@ namespace AddressBook_Collection
                         break;
                     case "5":
                         DisplayContactsFromAddressBook();
+                        break;
+                    case "6":
+                        addressBook.GetPersonFromCityOrState();
                         break;
                     default:
                         flag = false;
@@ -123,7 +127,7 @@ namespace AddressBook_Collection
         {
             Console.WriteLine("\nEnter address book name");
             string name = Console.ReadLine();
-            if(!addressBookDictionary.ContainsKey(name))
+            if (!addressBookDictionary.ContainsKey(name))
             {
                 Console.WriteLine("Address book name not found");
             }
@@ -132,10 +136,6 @@ namespace AddressBook_Collection
                 AddressBook addressBook = addressBookDictionary[name];
                 addressBook.DisplayContact();
             }
-        }
-        static void DisplayNameFromCityOrState()
-        {
-
         }
     }
 }

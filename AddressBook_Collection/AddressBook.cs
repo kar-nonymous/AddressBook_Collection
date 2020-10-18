@@ -166,5 +166,19 @@ namespace AddressBook_Collection
                 Console.WriteLine("\nFirst name: " + contacts.firstName + "\nLast name: " + contacts.lastName + "\nAddress: " + contacts.address + "\nCity: " + contacts.city + "\nState: " + contacts.state + "\nEmail: " + contacts.email + "\nZip: " + contacts.zip + "\nPhone number" + contacts.phnNo);
             }
         }
+        /// <summary>
+        /// UC8:    Gets the person name from the corresponding city or state
+        /// </summary>
+        public void GetPersonFromCityOrState()
+        {
+            Console.WriteLine("\nEnter the city or state name to find the person");
+            string city = Console.ReadLine();
+            string state = city;
+            foreach(KeyValuePair<string,Contacts> keyValuePair in addressDictionary)
+            {
+                if (keyValuePair.Value.city == city || keyValuePair.Value.state == state)
+                    Console.WriteLine("First Name: " + keyValuePair.Value.firstName + "Last Name: " + keyValuePair.Value.lastName);
+            }
+        }
     }
 }
